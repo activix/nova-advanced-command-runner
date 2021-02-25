@@ -76,31 +76,38 @@
             <button type="button" class="items-right btn btn-default btn-primary" @click="runCustomCommand">Run</button>
         </div>
 
-        <card class="flex flex-col items-center" style="min-height: 300px">
-            <h2 class="text-black text-3xl font-light mt-4">
-                Available commands
-            </h2>
-
-            <div class="flex bg-grey-lighter">
-                <div v-for="group in groups" class="flex-1 text-grey-darker text-center bg-grey-light px-4 py-2 m-2">
-                    <h4 class="text-black text-2xl text-60 font-light mb-6 mt-4">
-                        {{group ? group : 'Unnamed group'}}
-                    </h4>
-                    <button type="button"
-                            v-for="(command, index) in commands"
-                            v-if="command.group===group"
-                            @click="openModal(command)"
-                            class="items-left btn btn-default mb-2"
-                            style="width: 100%;"
-                            v-bind:class="command.type ? ('btn-'+ command.type) : 'btn-primary'"
-                    >
-                        {{command.label}}
-                    </button>
+        <div style="min-height: 300px">
+            <div class="md:grid md:grid-cols-3 md:gap-6" v-for="group in groups">
+                <div class="md:col-span-1 mb-5">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium text-gray-900">
+                            {{ group ? group : 'Unnamed group' }}
+                        </h3>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <button type="button"
+                                    v-for="(command, index) in commands"
+                                    v-if="command.group===group"
+                                    @click="openModal(command)"
+                                    class="text-left items-left btn btn-default mb-2"
+                                    style="width: 100%;"
+                                    v-bind:class="command.type ? ('btn-'+ command.type) : 'btn-primary'"
+                            >
+                                {{command.label}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-3 hidden sm:block">
+                    <div class="pb-6">
+                        <div class="border-t border-gray-200"></div>
+                    </div>
                 </div>
             </div>
-
-
-        </card>
+        </div>
 
         <div class="flex justify-between mt-6 mb-6">
             <heading class="">History</heading>

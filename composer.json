@@ -4,7 +4,8 @@
     "keywords": ["laravel", "nova", "Artisan", "commands","shell","bash"],
     "license": "MIT",
     "require": {
-        "php": ">=7.1.0"
+        "php": ">=7.1.0",
+        "optimistdigital/nova-tailwind": "^1.1"
     },
     "autoload": {
         "psr-4": {
