@@ -87,10 +87,11 @@
         </div>
         <template v-if="commands.length > 0">
           <button type="button"
+                  :title="command.label"
                   v-for="(command, index) in commands"
                   v-if="command.group===group"
                   @click="openModal(command)"
-                  class="text-left items-left btn btn-default w-full mb-3 text-center"
+                  class="text-left items-left btn btn-default w-full mb-3 text-center truncate"
                   v-bind:class="command.type ? ('btn-'+ command.type) : 'btn-primary'"
           >
             {{command.label}}
@@ -240,6 +241,10 @@ export default {
     openModal(command) {
       this.runningCommand = command;
       this.modalOpen = true;
+    },
+    closeModal() {
+      this.modalOpen = false;
+      this.runningCommand = {};
     },
   },
 }
